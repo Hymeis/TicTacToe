@@ -1,3 +1,4 @@
+import java.util.Locale;
 import java.util.Scanner;
 
 import javax.swing.*;
@@ -152,11 +153,6 @@ public class Board extends JPanel {
 
     //checks if any player wins
     private boolean check(){
-        Scanner myObj = new Scanner(System.in);
-        System.out.println("Enter [Row] + [ ] + [Column]");
-        String out = myObj.nextLine();   
-    
-
         String winner = (step % 2 == 1) ? "X" : "O";
         for (int i = 0; i < 3; i++){
             if (board[0][i] == board[1][i] && board[1][i] == board[2][i]){ // horizontal
@@ -191,7 +187,7 @@ public class Board extends JPanel {
         System.out.println("Do you want to restart the game? yes / no?");
         String answer = myObj.nextLine();
 
-        if(answer.contains("no"))
+        if(answer.toLowerCase().equals("no") || answer.toUpperCase().equals("N"))
         {
             gameEnded = true;
             myObj.close();
@@ -202,6 +198,7 @@ public class Board extends JPanel {
     private void printBoard(){
         for (int i = 0; i < 3; i++){
             for (int j = 0; j < 3; j++){
+                //String str = (board[i][j].equals("O") || board[i][j].equals("X")) ? board[i][j] : "?";
                 System.out.print(board[i][j] + " ");
             }
             System.out.println();
